@@ -1,0 +1,63 @@
+<div class="screen">
+    <div class="screen-content">
+        <div class="group"></div>
+
+        <!-- Заголовок -->
+        <div class="text-wrapper-3">АНАЛИТИКА</div>
+
+        <!-- Табы -->
+        <div class="frame">
+            <div class="div-wrapper" [class.active]="activeTab() === 'general'" (click)="setTab('general')">
+                <div class="text-wrapper">ОБЩАЯ</div>
+            </div>
+            <div class="div" [class.active]="activeTab() === 'detailed'" (click)="setTab('detailed')">
+                <div class="text-wrapper-2">ДЕТАЛЬНАЯ</div>
+            </div>
+        </div>
+
+        <!-- Основной контент -->
+        <div class="frame-2">
+            <!-- Иконки режимов в рамке -->
+            <div class="modes-frame">
+                <div class="modes-inner">
+                    <div class="glow-circle"></div>
+                    @for (mode of gameModes; track mode.name) {
+                    <img [src]="mode.icon" [alt]="mode.name" class="mode-image" />
+                    }
+                </div>
+            </div>
+
+            <!-- Секция анализа карт -->
+            <div class="frame-3">
+                <div class="text-wrapper-11">АНАЛИЗ КАРТ</div>
+
+                <div class="frame-wrapper">
+                    <div class="frame-4">
+                        @for (map of mapsAnalysis; track map.name; let i = $index) {
+                        <img [class]="i === 0 ? 'mask-group' : (i === 1 ? 'mask-group-2' : 'mask-group-3')"
+                            [src]="map.image" [alt]="map.name"
+                            (click)="map.name === 'Вжух-Вжух' ? navigateToMapAnalysis(map.name) : null"
+                            [style.cursor]="map.name === 'Вжух-Вжух' ? 'pointer' : 'default'" />
+                        <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))"
+                            [style.color]="map.winRate > 50 ? '#00ff26' : '#ff4040'">
+                            {{ map.winRate }}%
+                        </div>
+                        <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
+                            {{ map.name }}
+                        </div>
+                        <div [class]="'frame-' + (i === 0 ? '7' : (i === 1 ? '6' : '5'))">
+                            <div class="text-wrapper-10">i</div>
+                        </div>
+                        }
+                    </div>
+                </div>
+
+                <!-- Средний WR -->
+                <p class="WR">
+                    <span class="span">СРЕДНИЙ WR: </span>
+                    <span class="text-wrapper-12">{{ averageWR }}%</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>

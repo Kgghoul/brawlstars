@@ -1,0 +1,64 @@
+### Brawl Stars API Tests
+### Используйте расширение REST Client для VS Code
+
+@baseUrl = http://localhost:3000
+@playerId = ABC123
+
+### ========================================
+### Analytics Endpoints
+### ========================================
+
+### 1. Получить топ бойцов игрока
+GET {{baseUrl}}/analytics/{{playerId}}/brawlers
+Content-Type: application/json
+
+### 2. Получить историю винрейта для Shelly (30 дней)
+GET {{baseUrl}}/analytics/{{playerId}}/brawlers/Shelly/winrate-history?days=30
+Content-Type: application/json
+
+### 3. Получить историю винрейта для Shelly (15 дней)
+GET {{baseUrl}}/analytics/{{playerId}}/brawlers/Shelly/winrate-history?days=15
+Content-Type: application/json
+
+### 4. Получить историю винрейта для Colt
+GET {{baseUrl}}/analytics/{{playerId}}/brawlers/Colt/winrate-history?days=30
+Content-Type: application/json
+
+### 5. Получить лучших бойцов для карты "Hard Rock Mine"
+GET {{baseUrl}}/analytics/{{playerId}}/maps/Hard Rock Mine/brawlers
+Content-Type: application/json
+
+### ========================================
+### Admin Endpoints
+### ========================================
+
+### 6. Синхронизация данных игрока
+POST {{baseUrl}}/admin/sync/{{playerId}}
+Content-Type: application/json
+
+### ========================================
+### Error Cases
+### ========================================
+
+### 7. Попытка получить данные несуществующего игрока (404)
+GET {{baseUrl}}/analytics/INVALID_ID/brawlers
+Content-Type: application/json
+
+### 8. Попытка получить историю несуществующего бойца (404)
+GET {{baseUrl}}/analytics/{{playerId}}/brawlers/InvalidBrawler/winrate-history?days=30
+Content-Type: application/json
+
+### 9. Попытка получить данные несуществующей карты (404)
+GET {{baseUrl}}/analytics/{{playerId}}/maps/InvalidMap/brawlers
+Content-Type: application/json
+
+### ========================================
+### Production API (когда будет готов)
+### ========================================
+
+# @prodBaseUrl = https://your-production-api.com
+# @prodPlayerId = YOUR_REAL_PLAYER_ID
+
+# ### Получить топ бойцов (Production)
+# GET {{prodBaseUrl}}/analytics/{{prodPlayerId}}/brawlers
+# Content-Type: application/json

@@ -1,0 +1,588 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600;700&family=Montserrat:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap");
+
+.screen {
+  background-color: transparent;
+  width: 100%;
+  min-height: 100vh;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  padding: 20px;
+}
+
+.screen-content {
+  width: 100%;
+  max-width: 428px;
+  position: relative;
+  min-height: auto;
+  padding-bottom: 40px;
+  z-index: 2;
+}
+
+.screen-content .group {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 958px;
+  background: transparent;
+  pointer-events: none;
+}
+
+.screen-content .frame {
+  display: flex;
+  width: 177px;
+  align-items: center;
+  gap: 9px;
+  position: absolute;
+  top: 165px;
+  left: calc(50.00% - 88px);
+}
+
+.screen-content .div-wrapper {
+  display: flex;
+  width: 78px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 3px 10px;
+  position: relative;
+  align-self: stretch;
+  background-color: #42064b;
+  border-radius: 7px;
+  border: 1px solid;
+  border-color: #ff2575;
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.active {
+    background: linear-gradient(90deg, rgba(241, 134, 48, 1) 0%, rgba(82, 24, 254, 1) 100%);
+    border: none;
+  }
+}
+
+.screen-content .text-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+  margin-top: -1.00px;
+  opacity: 0.7;
+  font-family: "IBM Plex Mono", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 0.10px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.screen-content .div {
+  display: flex;
+  flex-direction: column;
+  width: 90px;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 0px 4px;
+  position: relative;
+  align-self: stretch;
+  border-radius: 7px;
+  box-shadow: 0px 2px 10.1px #41064a;
+  background: linear-gradient(90deg, rgba(241, 134, 48, 1) 0%, rgba(82, 24, 254, 1) 100%);
+  cursor: pointer;
+  transition: all 0.3s;
+
+  &:hover {
+    transform: scale(1.05);
+  }
+
+  &.active {
+    background: linear-gradient(90deg, rgba(241, 134, 48, 1) 0%, rgba(82, 24, 254, 1) 100%);
+  }
+}
+
+.screen-content .text-wrapper-2 {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 82px;
+  height: 20px;
+  font-family: "IBM Plex Mono", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 15px;
+  text-align: center;
+  letter-spacing: 0.10px;
+  line-height: 20px;
+  white-space: nowrap;
+}
+
+.screen .text-wrapper-3 {
+  position: absolute;
+  top: 85px;
+  left: calc(50.00% - 167px);
+  width: 334px;
+  height: 52px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(90deg, rgba(255, 238, 202, 1) 0%, rgba(255, 193, 59, 1) 100%);
+  -webkit-background-clip: text !important;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-fill-color: transparent;
+  font-family: "IBM Plex Mono", Helvetica, sans-serif;
+  font-weight: 500;
+  color: transparent;
+  font-size: 56px;
+  text-align: center;
+  letter-spacing: 1.00px;
+  line-height: 20px;
+}
+
+.screen-content .frame-2 {
+  display: flex;
+  flex-direction: column;
+  width: 345px;
+  align-items: flex-start;
+  gap: 28px;
+  position: relative;
+  margin-top: 245px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.screen-content .frame-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 30px;
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  flex: 0 0 auto;
+}
+
+.screen-content .frame-3 {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  height: 229px;
+  border-radius: 24px;
+  border: 1px solid;
+  border-color: #ffffff54;
+  backdrop-filter: blur(20px) brightness(100%);
+  -webkit-backdrop-filter: blur(20px) brightness(100%);
+  background: linear-gradient(180deg, rgba(30, 27, 46, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.screen-content .text-wrapper-4 {
+  position: absolute;
+  top: 23px;
+  left: 0;
+  right: 0;
+  height: 21px;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 800;
+  color: #d7ffdd;
+  font-size: 20px;
+  letter-spacing: 0.03px;
+  line-height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.map-analysis-content {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  padding: 60px 20px 20px;
+  width: 100%;
+}
+
+.map-image-container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.map-image {
+  width: auto;
+  height: 140px;
+  object-fit: cover;
+  border-radius: 12px;
+  display: block;
+  position: relative;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 60%;
+    background: linear-gradient(to bottom, transparent 0%, rgba(0, 0, 0, 0.9) 100%);
+    pointer-events: none;
+    border-radius: 0 0 12px 12px;
+  }
+}
+
+.map-overlay {
+  position: absolute;
+  bottom: 8px;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2px;
+  pointer-events: none;
+}
+
+.map-name-overlay {
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #ffffff;
+  font-size: 10px;
+  letter-spacing: 0.03px;
+  text-align: center;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.map-winrate {
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 700;
+  font-size: 32px;
+  letter-spacing: 0.03px;
+  text-align: center;
+  text-shadow: 0 2px 6px rgba(0, 0, 0, 0.9);
+}
+
+.map-stats {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+}
+
+.screen-content .text-wrapper-5 {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 600;
+  color: #ffffff;
+  font-size: 18px;
+  letter-spacing: 0.03px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.screen-content .text-wrapper-6 {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #55ff6f;
+  font-size: 16px;
+  letter-spacing: 0.03px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.screen-content .text-wrapper-7 {
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #fe5959;
+  font-size: 16px;
+  letter-spacing: 0.03px;
+  line-height: 20px;
+  text-align: left;
+}
+
+.screen-content .frame-6 {
+  position: relative;
+  align-self: stretch;
+  width: 100%;
+  height: 386px;
+  border-radius: 24px;
+  border: 1px solid;
+  border-color: #ffffff54;
+  backdrop-filter: blur(20px) brightness(100%);
+  -webkit-backdrop-filter: blur(20px) brightness(100%);
+  background: linear-gradient(180deg, rgba(30, 27, 46, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%);
+}
+
+.screen-content .text-wrapper-10 {
+  position: absolute;
+  top: 17px;
+  left: calc(50.00% - 172px);
+  width: 344px;
+  height: 21px;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 800;
+  color: #eeffc6;
+  font-size: 20px;
+  letter-spacing: 0.03px;
+  line-height: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.screen-content .frame-7 {
+  display: flex;
+  width: 307px;
+  align-items: center;
+  padding: 4.08px 6.12px;
+  position: absolute;
+  top: 86px;
+  left: calc(50.00% - 154px);
+  background-color: #2b2b3d;
+  border-radius: 6.12px;
+}
+
+.screen-content .frame-8 {
+  display: inline-flex;
+  align-items: center;
+  gap: 6.12px;
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.screen-content .ellipse {
+  position: relative;
+  width: 69.52px;
+  height: 70.19px;
+  object-fit: cover;
+}
+
+.screen-content .text-wrapper-11 {
+  position: relative;
+  width: 107.58px;
+  height: 50.21px;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #ffffff;
+  font-size: 24.5px;
+  letter-spacing: 0.01px;
+  line-height: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.screen-content .frame-9 {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8.16px;
+  position: relative;
+  flex: 0 0 auto;
+  margin-right: -6.22px;
+}
+
+.screen-content .text-wrapper-12 {
+  position: relative;
+  width: 57.85px;
+  height: 23.05px;
+  margin-top: -0.51px;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #00ff26;
+  font-size: 20px;
+  letter-spacing: 0.01px;
+  line-height: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.screen-content .text-wrapper-13 {
+  position: relative;
+  width: 51.76px;
+  height: 17.93px;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 400;
+  color: #d9d9d9;
+  font-size: 20px;
+  letter-spacing: 0.01px;
+  line-height: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.screen-content .frame-10 {
+  display: flex;
+  width: 307px;
+  align-items: center;
+  padding: 4.08px 6.12px;
+  position: absolute;
+  top: 180px;
+  left: calc(50.00% - 154px);
+  background-color: #2b2b3d;
+  border-radius: 6.12px;
+}
+
+.screen-content .frame-11 {
+  display: flex;
+  width: 307px;
+  align-items: center;
+  padding: 4.08px 6.12px;
+  position: absolute;
+  top: 274px;
+  left: calc(50.00% - 154px);
+  background-color: #2b2b3d;
+  border-radius: 6.12px;
+}
+
+.screen-content .frame-12 {
+  position: absolute;
+  top: 47px;
+  left: 13px;
+  width: 311px;
+  height: 30px;
+}
+
+.screen-content .text-wrapper-14 {
+  position: absolute;
+  top: 4px;
+  left: -28px;
+  width: 119px;
+  height: 30px;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  color: #8c8c8c;
+  font-size: 14px;
+  letter-spacing: 0.05px;
+  line-height: 9.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 500;
+  text-align: center;
+}
+
+.screen-content .text-wrapper-15 {
+  position: absolute;
+  top: 0;
+  left: 179px;
+  width: 74px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #8c8c8c;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.05px;
+  line-height: 9.5px;
+}
+
+.screen-content .text-wrapper-16 {
+  position: absolute;
+  top: 0;
+  left: 232px;
+  width: 98px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 500;
+  color: #8c8c8c;
+  font-size: 14px;
+  text-align: center;
+  letter-spacing: 0.05px;
+  line-height: 9.5px;
+}
+
+.screen-content .text-wrapper-17 {
+  position: absolute;
+  top: 17px;
+  left: calc(50.00% - 172px);
+  width: 344px;
+  height: 21px;
+  font-family: "Montserrat", Helvetica, sans-serif;
+  font-weight: 800;
+  color: #ffa5a5;
+  font-size: 20px;
+  letter-spacing: 0.03px;
+  line-height: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.screen-content .text-wrapper-18 {
+  position: relative;
+  width: 57.85px;
+  height: 23.05px;
+  margin-top: -0.51px;
+  font-family: "Inter", Helvetica, sans-serif;
+  font-weight: 700;
+  color: #ff0000;
+  font-size: 20px;
+  letter-spacing: 0.01px;
+  line-height: 2.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+// Responsive
+@media (max-width: 480px) {
+  .screen {
+    padding: 10px;
+  }
+
+  .screen-content {
+    max-width: 100%;
+  }
+
+  .screen-content .frame-2 {
+    width: calc(100% - 20px);
+    margin-left: 10px;
+    margin-right: 10px;
+  }
+}
+
+@media (max-width: 390px) {
+  .screen {
+    padding: 5px;
+  }
+
+  .screen-content .text-wrapper-3 {
+    font-size: 42px;
+    left: calc(50% - 120px);
+    width: 240px;
+  }
+
+  .screen-content .frame {
+    width: 160px;
+    left: calc(50% - 80px);
+  }
+
+  .screen-content .frame-2 {
+    width: calc(100% - 10px);
+    margin-left: 5px;
+    margin-right: 5px;
+  }
+}

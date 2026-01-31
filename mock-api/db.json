@@ -1,0 +1,321 @@
+{
+  "analytics": {
+    "ABC123": {
+      "brawlers": {
+        "player_id": "ABC123",
+        "count": 10,
+        "brawlers": [
+          {
+            "brawler": "Shelly",
+            "matches": 120,
+            "wins": 70,
+            "win_rate": 0.583
+          },
+          {
+            "brawler": "Colt",
+            "matches": 150,
+            "wins": 120,
+            "win_rate": 0.80
+          },
+          {
+            "brawler": "Poco",
+            "matches": 90,
+            "wins": 20,
+            "win_rate": 0.222
+          },
+          {
+            "brawler": "Edgar",
+            "matches": 200,
+            "wins": 180,
+            "win_rate": 0.90
+          },
+          {
+            "brawler": "Mortis",
+            "matches": 80,
+            "wins": 10,
+            "win_rate": 0.125
+          },
+          {
+            "brawler": "Spike",
+            "matches": 110,
+            "wins": 88,
+            "win_rate": 0.80
+          },
+          {
+            "brawler": "Leon",
+            "matches": 95,
+            "wins": 47,
+            "win_rate": 0.495
+          },
+          {
+            "brawler": "Sandy",
+            "matches": 75,
+            "wins": 60,
+            "win_rate": 0.80
+          },
+          {
+            "brawler": "Crow",
+            "matches": 88,
+            "wins": 35,
+            "win_rate": 0.398
+          },
+          {
+            "brawler": "Amber",
+            "matches": 102,
+            "wins": 82,
+            "win_rate": 0.804
+          }
+        ]
+      },
+      "winrate_history": {
+        "Shelly": {
+          "player_id": "ABC123",
+          "brawler": "Shelly",
+          "days": 30,
+          "history": [
+            {
+              "date": "2025-01-01",
+              "matches": 5,
+              "wins": 3,
+              "win_rate": 0.6
+            },
+            {
+              "date": "2025-01-02",
+              "matches": 8,
+              "wins": 5,
+              "win_rate": 0.625
+            },
+            {
+              "date": "2025-01-03",
+              "matches": 6,
+              "wins": 2,
+              "win_rate": 0.333
+            },
+            {
+              "date": "2025-01-04",
+              "matches": 10,
+              "wins": 7,
+              "win_rate": 0.7
+            },
+            {
+              "date": "2025-01-05",
+              "matches": 7,
+              "wins": 5,
+              "win_rate": 0.714
+            },
+            {
+              "date": "2025-01-06",
+              "matches": 12,
+              "wins": 8,
+              "win_rate": 0.667
+            },
+            {
+              "date": "2025-01-07",
+              "matches": 9,
+              "wins": 4,
+              "win_rate": 0.444
+            },
+            {
+              "date": "2025-01-08",
+              "matches": 11,
+              "wins": 9,
+              "win_rate": 0.818
+            },
+            {
+              "date": "2025-01-09",
+              "matches": 8,
+              "wins": 6,
+              "win_rate": 0.75
+            },
+            {
+              "date": "2025-01-10",
+              "matches": 10,
+              "wins": 5,
+              "win_rate": 0.5
+            },
+            {
+              "date": "2025-01-11",
+              "matches": 7,
+              "wins": 6,
+              "win_rate": 0.857
+            },
+            {
+              "date": "2025-01-12",
+              "matches": 9,
+              "wins": 7,
+              "win_rate": 0.778
+            },
+            {
+              "date": "2025-01-13",
+              "matches": 6,
+              "wins": 3,
+              "win_rate": 0.5
+            },
+            {
+              "date": "2025-01-14",
+              "matches": 10,
+              "wins": 8,
+              "win_rate": 0.8
+            },
+            {
+              "date": "2025-01-15",
+              "matches": 8,
+              "wins": 5,
+              "win_rate": 0.625
+            }
+            ]
+        },
+        "Colt": {
+          "player_id": "ABC123",
+          "brawler": "Colt",
+          "days": 30,
+          "history": [
+            {
+              "date": "2025-01-01",
+              "matches": 7,
+              "wins": 6,
+              "win_rate": 0.857
+            },
+            {
+              "date": "2025-01-02",
+              "matches": 10,
+              "wins": 8,
+              "win_rate": 0.8
+            },
+            {
+              "date": "2025-01-03",
+              "matches": 9,
+              "wins": 7,
+              "win_rate": 0.778
+            },
+            {
+              "date": "2025-01-04",
+              "matches": 12,
+              "wins": 10,
+              "win_rate": 0.833
+            },
+            {
+              "date": "2025-01-05",
+              "matches": 8,
+              "wins": 7,
+              "win_rate": 0.875
+            },
+            {
+              "date": "2025-01-06",
+              "matches": 11,
+              "wins": 9,
+              "win_rate": 0.818
+            },
+            {
+              "date": "2025-01-07",
+              "matches": 10,
+              "wins": 8,
+              "win_rate": 0.8
+            },
+            {
+              "date": "2025-01-08",
+              "matches": 13,
+              "wins": 11,
+              "win_rate": 0.846
+            },
+            {
+              "date": "2025-01-09",
+              "matches": 9,
+              "wins": 7,
+              "win_rate": 0.778
+            },
+            {
+              "date": "2025-01-10",
+              "matches": 11,
+              "wins": 9,
+              "win_rate": 0.818
+            },
+            {
+              "date": "2025-01-11",
+              "matches": 8,
+              "wins": 7,
+              "win_rate": 0.875
+            },
+            {
+              "date": "2025-01-12",
+              "matches": 10,
+              "wins": 8,
+              "win_rate": 0.8
+            },
+            {
+              "date": "2025-01-13",
+              "matches": 9,
+              "wins": 8,
+              "win_rate": 0.889
+            },
+            {
+              "date": "2025-01-14",
+              "matches": 12,
+              "wins": 10,
+              "win_rate": 0.833
+            },
+            {
+              "date": "2025-01-15",
+              "matches": 11,
+              "wins": 9,
+              "win_rate": 0.818
+            }
+          ]
+        }
+      },
+      "maps": {
+        "Hard Rock Mine": {
+          "player_id": "ABC123",
+          "map": "Gem Grab - Hard Rock Mine",
+          "count": 5,
+          "brawlers": [
+            {
+              "brawler": "Poco",
+              "map": "Hard Rock Mine",
+              "matches": 20,
+              "wins": 14,
+              "win_rate": 0.7
+            },
+            {
+              "brawler": "Pam",
+              "map": "Hard Rock Mine",
+              "matches": 18,
+              "wins": 15,
+              "win_rate": 0.833
+            },
+            {
+              "brawler": "Gene",
+              "map": "Hard Rock Mine",
+              "matches": 15,
+              "wins": 12,
+              "win_rate": 0.8
+            },
+            {
+              "brawler": "Tara",
+              "map": "Hard Rock Mine",
+              "matches": 12,
+              "wins": 8,
+              "win_rate": 0.667
+            },
+            {
+              "brawler": "Sandy",
+              "map": "Hard Rock Mine",
+              "matches": 10,
+              "wins": 7,
+              "win_rate": 0.7
+            }
+          ]
+        }
+      }
+    }
+  },
+  "admin": {
+    "sync": {
+      "ABC123": {
+        "player_id": "ABC123",
+        "last_match_time": "2025-01-15T18:30:00Z",
+        "message": "Данные игрока успешно синхронизированы"
+      }
+    }
+  }
+}

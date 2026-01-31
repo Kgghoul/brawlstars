@@ -1,0 +1,143 @@
+<div class="screen">
+  <div class="screen-content">
+    <div class="group"></div>
+
+    <!-- Заголовок -->
+    <div class="text-wrapper-3">АНАЛИТИКА</div>
+
+    <!-- Табы -->
+    <div class="frame">
+      <div class="div-wrapper" [class.active]="activeTab() === 'general'" (click)="setTab('general')">
+        <div class="text-wrapper">ОБЩАЯ</div>
+      </div>
+      <div class="div" [class.active]="activeTab() === 'detailed'" (click)="setTab('detailed')">
+        <div class="text-wrapper-2">ДЕТАЛЬНАЯ</div>
+      </div>
+    </div>
+
+    <!-- Основной контент -->
+    <div class="frame-2">
+      <!-- Лучшие карты -->
+      <div class="frame-3">
+        <div class="text-wrapper-10">ЛУЧШИЕ КАРТЫ</div>
+        <div class="frame-wrapper">
+          <div class="frame-4">
+            @for (map of bestMaps; track map.name; let i = $index) {
+            <div [class]="'map-container ' + (i === 0 ? 'mask-group' : (i === 1 ? 'img' : 'mask-group-2'))">
+              <img [src]="map.image" [alt]="map.name" />
+            </div>
+            <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))">
+              {{ map.winRate }}%
+            </div>
+            <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
+              {{ map.name }}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Худшие карты -->
+      <div class="frame-3">
+        <div class="text-wrapper-14">ХУДШИЕ КАРТЫ</div>
+        <div class="frame-wrapper">
+          <div class="frame-4">
+            @for (map of worstMaps; track map.name; let i = $index) {
+            <div [class]="'map-container ' + (i === 0 ? 'mask-group' : (i === 1 ? 'img' : 'mask-group-2'))">
+              <img [src]="map.image" [alt]="map.name" />
+            </div>
+            <div [class]="'text-wrapper-' + (i === 0 ? '11' : (i === 1 ? '12' : '13'))">
+              {{ map.winRate }}%
+            </div>
+            <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
+              {{ map.name }}
+            </div>
+            }
+          </div>
+        </div>
+      </div>
+
+      <!-- Лучшие бойцы -->
+      <div class="frame-5">
+        <div class="text-wrapper-15">ЛУЧШИЕ БОЙЦЫ</div>
+        <div class="frame-11">
+          <div class="text-wrapper-19">БОЕЦ</div>
+          <div class="text-wrapper-20">WR</div>
+          <div class="text-wrapper-21">PICK</div>
+        </div>
+
+        @for (brawler of bestBrawlers; track brawler.name; let i = $index) {
+        <div [class]="i === 0 ? 'frame-6' : (i === 1 ? 'frame-9' : 'frame-10')">
+          <div class="frame-7">
+            <img class="ellipse" [src]="brawler.avatar" [alt]="brawler.name" />
+            <div class="text-wrapper-16">{{ brawler.name }}</div>
+          </div>
+          <div class="frame-8">
+            <div class="text-wrapper-17">{{ brawler.winRate }}%</div>
+            <div class="text-wrapper-18">{{ brawler.pickRate }}%</div>
+          </div>
+        </div>
+        }
+      </div>
+
+      <!-- Худшие бойцы -->
+      <div class="frame-5">
+        <div class="text-wrapper-22">ХУДШИЕ БОЙЦЫ</div>
+        <div class="frame-11">
+          <div class="text-wrapper-19">БОЕЦ</div>
+          <div class="text-wrapper-20">WR</div>
+          <div class="text-wrapper-21">PICK</div>
+        </div>
+
+        @for (brawler of worstBrawlers; track brawler.name; let i = $index) {
+        <div [class]="i === 0 ? 'frame-6' : (i === 1 ? 'frame-9' : 'frame-10')">
+          <div class="frame-7">
+            <img class="ellipse" [src]="brawler.avatar" [alt]="brawler.name" />
+            <div class="text-wrapper-16">{{ brawler.name }}</div>
+          </div>
+          <div class="frame-8">
+            <div class="text-wrapper-23">{{ brawler.winRate }}%</div>
+            <div class="text-wrapper-18">{{ brawler.pickRate }}%</div>
+          </div>
+        </div>
+        }
+      </div>
+
+      <!-- График последних матчей -->
+      <div class="frame-chart">
+        <div class="text-wrapper-24">Последние матчи</div>
+        
+        <!-- График (SVG) -->
+        <div class="group-2">
+          <svg width="272" height="180" viewBox="0 0 272 180" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <!-- Горизонтальные линии сетки -->
+            <line x1="0" y1="18" x2="272" y2="18" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="36" x2="272" y2="36" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="54" x2="272" y2="54" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="72" x2="272" y2="72" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="90" x2="272" y2="90" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="108" x2="272" y2="108" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="126" x2="272" y2="126" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="144" x2="272" y2="144" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="162" x2="272" y2="162" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+            <line x1="0" y1="180" x2="272" y2="180" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
+
+            <!-- Заливка с градиентом -->
+            <path opacity="0.3" d="M59.0828 0L0 172V180H271.5V15L187.183 32L170.5 55H148L117.395 79L59.0828 0Z"
+              fill="url(#paint0_linear_0_213)" />
+            <!-- Четкая линия контура -->
+            <path d="M59.0828 0L0 172M271.5 15L187.183 32L170.5 55H148L117.395 79L59.0828 0" stroke="#EF7527"
+              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
+            <defs>
+              <linearGradient id="paint0_linear_0_213" x1="135.75" y1="0" x2="135.75" y2="180"
+                gradientUnits="userSpaceOnUse">
+                <stop stop-color="#EF7527" />
+                <stop offset="1" stop-color="#EF7527" stop-opacity="0" />
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -31,7 +31,9 @@ export class ApiService {
    * GET /analytics/{playerId}/brawlers
    */
   getTopBrawlers(playerId: string): Observable<TopBrawlersResponse> {
-    return this.http.get<TopBrawlersResponse>(`${this.baseUrl}/analytics/${playerId}/brawlers`);
+    const url = `${this.baseUrl}/analytics/${playerId}/brawlers`;
+    console.log('🌐 API запрос:', url);
+    return this.http.get<TopBrawlersResponse>(url);
   }
 
   /**

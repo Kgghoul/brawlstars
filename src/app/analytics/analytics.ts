@@ -38,10 +38,16 @@ export class AnalyticsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Используем ID игрока 101
-    const playerId = '101';
-    this.analyticsService.setPlayerId(playerId);
-    this.loadAnalyticsData();
+    // Установите ID игрока здесь
+    // Можно получить из роута, localStorage или другого источника
+    const playerId = this.getPlayerIdFromStorage();
+    if (playerId) {
+      this.analyticsService.setPlayerId(playerId);
+      this.loadAnalyticsData();
+    } else {
+      // Если ID игрока не найден, используем демо-данные
+      this.loadDemoData();
+    }
   }
 
   /**

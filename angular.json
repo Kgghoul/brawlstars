@@ -48,12 +48,13 @@
                   "maximumError": "100kB"
                 }
               ],
-              "outputHashing": "all",
               "optimization": {
                 "scripts": true,
                 "styles": true,
                 "fonts": false
-              }
+              },
+              "outputHashing": "all",
+              "namedChunks": true
             },
             "development": {
               "optimization": false,

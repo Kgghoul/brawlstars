@@ -1,4 +1,4 @@
 export const environment = {
   production: true,
-  apiUrl: 'http://91.229.11.191:8080'
+  apiUrl: 'https://your-production-api.com' // Замените на ваш production URL
 };

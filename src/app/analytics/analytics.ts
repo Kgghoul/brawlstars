@@ -38,16 +38,10 @@ export class AnalyticsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Установите ID игрока здесь
-    // Можно получить из роута, localStorage или другого источника
-    const playerId = this.getPlayerIdFromStorage();
-    if (playerId) {
-      this.analyticsService.setPlayerId(playerId);
-      this.loadAnalyticsData();
-    } else {
-      // Если ID игрока не найден, используем демо-данные
-      this.loadDemoData();
-    }
+    // Используем ID игрока 101
+    const playerId = '101';
+    this.analyticsService.setPlayerId(playerId);
+    this.loadAnalyticsData();
   }
 
   /**
@@ -89,16 +83,16 @@ export class AnalyticsComponent implements OnInit {
    */
   loadDemoData(): void {
     this.bestBrawlers = [
-      { name: 'Алли', winRate: 99, pickRate: 20, avatar: 'assets/brawlers/Alli.png' },
-      { name: 'Брок', winRate: 87, pickRate: 15, avatar: 'assets/brawlers/broke.png' },
-      { name: 'Белль', winRate: 79, pickRate: 7, avatar: 'assets/brawlers/bell.png' }
-    ];
+    { name: 'Алли', winRate: 99, pickRate: 20, avatar: 'assets/brawlers/Alli.png' },
+    { name: 'Брок', winRate: 87, pickRate: 15, avatar: 'assets/brawlers/broke.png' },
+    { name: 'Белль', winRate: 79, pickRate: 7, avatar: 'assets/brawlers/bell.png' }
+  ];
 
     this.worstBrawlers = [
-      { name: 'Алли', winRate: 0, pickRate: 1, avatar: 'assets/brawlers/Alli.png' },
-      { name: 'Брок', winRate: 1, pickRate: 1, avatar: 'assets/brawlers/broke.png' },
-      { name: 'Белль', winRate: 2, pickRate: 1, avatar: 'assets/brawlers/bell.png' }
-    ];
+    { name: 'Алли', winRate: 0, pickRate: 1, avatar: 'assets/brawlers/Alli.png' },
+    { name: 'Брок', winRate: 1, pickRate: 1, avatar: 'assets/brawlers/broke.png' },
+    { name: 'Белль', winRate: 2, pickRate: 1, avatar: 'assets/brawlers/bell.png' }
+  ];
   }
 
   /**

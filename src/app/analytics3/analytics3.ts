@@ -17,7 +17,7 @@ export class Analytics3Component {
   // Данные карты
   mapData = {
     name: 'Вжух-Вжух',
-    image: '/assets/maps/juhjuh.png',
+    image: 'assets/maps/juhjuh.png',
     wins: 94,
     losses: 10,
     winRate: 91
@@ -25,16 +25,16 @@ export class Analytics3Component {
 
   // Лучшие бойцы
   bestBrawlers = [
-    { name: 'Алли', avatar: '/assets/brawlers/Alli.png', winRate: 99, pickRate: 20 },
-    { name: 'Брок', avatar: '/assets/brawlers/broke.png', winRate: 87, pickRate: 15 },
-    { name: 'Белль', avatar: '/assets/brawlers/bell.png', winRate: 79, pickRate: 7 }
+    { name: 'Алли', avatar: 'assets/brawlers/Alli.png', winRate: 99, pickRate: 20 },
+    { name: 'Брок', avatar: 'assets/brawlers/broke.png', winRate: 87, pickRate: 15 },
+    { name: 'Белль', avatar: 'assets/brawlers/bell.png', winRate: 79, pickRate: 7 }
   ];
 
   // Худшие бойцы
   worstBrawlers = [
-    { name: 'Алли', avatar: '/assets/brawlers/Alli.png', winRate: 0, pickRate: 1 },
-    { name: 'Брок', avatar: '/assets/brawlers/broke.png', winRate: 1, pickRate: 1 },
-    { name: 'Белль', avatar: '/assets/brawlers/bell.png', winRate: 2, pickRate: 1 }
+    { name: 'Алли', avatar: 'assets/brawlers/Alli.png', winRate: 0, pickRate: 1 },
+    { name: 'Брок', avatar: 'assets/brawlers/broke.png', winRate: 1, pickRate: 1 },
+    { name: 'Белль', avatar: 'assets/brawlers/bell.png', winRate: 2, pickRate: 1 }
   ];
 
   setTab(tab: 'general' | 'detailed') {

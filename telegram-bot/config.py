@@ -10,7 +10,7 @@ class Settings(BaseSettings):
     # API Settings
     API_HOST: str = "0.0.0.0"
     API_PORT: int = 3000
-    API_BASE_URL: str = "http://91.229.11.191:8080"
+    API_BASE_URL: str = "http://91.229.11.191:8080/api/v1"
     
     # Web App
     WEB_APP_URL: str = "https://kgghoul.github.io/brawlstars"

@@ -55,7 +55,6 @@ export class AnalyticsComponent implements OnInit {
     // Загружаем топ бойцов
     this.analyticsService.getTopBrawlers(3).subscribe({
       next: (brawlers) => {
-        console.log('Получены лучшие бойцы:', brawlers);
         this.bestBrawlers = brawlers;
       },
       error: (err) => {
@@ -68,7 +67,6 @@ export class AnalyticsComponent implements OnInit {
     // Загружаем худших бойцов
     this.analyticsService.getWorstBrawlers(3).subscribe({
       next: (brawlers) => {
-        console.log('Получены худшие бойцы:', brawlers);
         this.worstBrawlers = brawlers;
         this.isLoading = false;
       },

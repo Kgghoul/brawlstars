@@ -1,4 +1,4 @@
-import { Component, signal, OnInit } from '@angular/core';
+import { Component, signal, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AnalyticsService, BrawlerDisplay, MapDisplay } from '../services/analytics.service';
@@ -35,13 +35,18 @@ export class AnalyticsComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private analyticsService: AnalyticsService
+    private analyticsService: AnalyticsService,
+    private cdr: ChangeDetectorRef
   ) { }
 
   ngOnInit(): void {
+    console.log('🚀 ngOnInit вызван');
     // Используем ID игрока из environment
     const playerId = environment.playerId || '101';
+    console.log('📋 Player ID:', playerId);
+    console.log('🌐 API URL:', environment.apiUrl);
     this.analyticsService.setPlayerId(playerId);
+    console.log('📞 Вызываем loadAnalyticsData...');
     this.loadAnalyticsData();
   }
 
@@ -49,29 +54,38 @@ export class AnalyticsComponent implements OnInit {
    * Загрузка данных аналитики с сервера
    */
   loadAnalyticsData(): void {
+    console.log('🔄 loadAnalyticsData начал работу');
     this.isLoading = true;
     this.error = null;
 
     // Загружаем топ бойцов
+    console.log('📤 Запрашиваем топ бойцов...');
     this.analyticsService.getTopBrawlers(3).subscribe({
       next: (brawlers) => {
+        console.log('✅ Получены лучшие бойцы:', brawlers);
         this.bestBrawlers = brawlers;
+        this.cdr.detectChanges();
+        console.log('🔄 Change detection triggered');
       },
       error: (err) => {
-        console.error('Ошибка загрузки топ бойцов:', err);
+        console.error('❌ Ошибка загрузки топ бойцов:', err);
         this.error = 'Не удалось загрузить данные';
         this.bestBrawlers = [];
       }
     });
 
     // Загружаем худших бойцов
+    console.log('📤 Запрашиваем худших бойцов...');
     this.analyticsService.getWorstBrawlers(3).subscribe({
       next: (brawlers) => {
+        console.log('✅ Получены худшие бойцы:', brawlers);
         this.worstBrawlers = brawlers;
         this.isLoading = false;
+        this.cdr.detectChanges();
+        console.log('🔄 Change detection triggered');
       },
       error: (err) => {
-        console.error('Ошибка загрузки худших бойцов:', err);
+        console.error('❌ Ошибка загрузки худших бойцов:', err);
         this.error = 'Не удалось загрузить данные';
         this.worstBrawlers = [];
         this.isLoading = false;

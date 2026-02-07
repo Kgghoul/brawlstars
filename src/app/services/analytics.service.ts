@@ -7,6 +7,8 @@ export interface BrawlerDisplay {
   winRate: number;
   pickRate: number;
   avatar: string;
+  matches: number;  // Добавили
+  wins: number;     // Добавили
 }
 
 export interface MapDisplay {
@@ -51,7 +53,9 @@ export class AnalyticsService {
           name: brawler.brawler,
           winRate: brawler.win_rate,
           pickRate: this.calculatePickRate(brawler.matches, response.brawlers),
-          avatar: this.getBrawlerAvatar(brawler.brawler)
+          avatar: this.getBrawlerAvatar(brawler.brawler),
+          matches: brawler.matches,
+          wins: brawler.wins
         }));
       }),
       catchError(error => {
@@ -77,7 +81,9 @@ export class AnalyticsService {
           name: brawler.brawler,
           winRate: brawler.win_rate, // API уже возвращает проценты
           pickRate: this.calculatePickRate(brawler.matches, response.brawlers),
-          avatar: this.getBrawlerAvatar(brawler.brawler)
+          avatar: this.getBrawlerAvatar(brawler.brawler),
+          matches: brawler.matches,
+          wins: brawler.wins
         }));
       }),
       catchError(error => {

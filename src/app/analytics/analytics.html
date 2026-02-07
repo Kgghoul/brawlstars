@@ -25,13 +25,19 @@
             @for (map of bestMaps; track map.name; let i = $index) {
             <div [class]="'map-container ' + (bestMaps.length === 1 ? 'map-centered' : (i === 0 ? 'mask-group' : (i === 1 ? 'img' : 'mask-group-2')))">
               <img [src]="map.image" [alt]="map.name" />
+              @if (bestMaps.length === 1) {
+              <div class="text-wrapper-centered-wr">{{ map.winRate }}%</div>
+              <div class="text-wrapper-centered-name">{{ map.name }}</div>
+              }
             </div>
-            <div [class]="bestMaps.length === 1 ? 'text-wrapper-centered-wr' : ('text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7')))">
+            @if (bestMaps.length > 1) {
+            <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))">
               {{ map.winRate }}%
             </div>
-            <div [class]="bestMaps.length === 1 ? 'text-wrapper-centered-name' : ('text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9')))">
+            <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
               {{ map.name }}
             </div>
+            }
             }
           </div>
         </div>
@@ -45,13 +51,19 @@
             @for (map of worstMaps; track map.name; let i = $index) {
             <div [class]="'map-container ' + (worstMaps.length === 1 ? 'map-centered' : (i === 0 ? 'mask-group' : (i === 1 ? 'img' : 'mask-group-2')))">
               <img [src]="map.image" [alt]="map.name" />
+              @if (worstMaps.length === 1) {
+              <div class="text-wrapper-centered-wr" style="color: #ff4040;">{{ map.winRate }}%</div>
+              <div class="text-wrapper-centered-name">{{ map.name }}</div>
+              }
             </div>
-            <div [class]="worstMaps.length === 1 ? 'text-wrapper-centered-wr' : ('text-wrapper-' + (i === 0 ? '11' : (i === 1 ? '12' : '13')))">
+            @if (worstMaps.length > 1) {
+            <div [class]="'text-wrapper-' + (i === 0 ? '11' : (i === 1 ? '12' : '13'))">
               {{ map.winRate }}%
             </div>
-            <div [class]="worstMaps.length === 1 ? 'text-wrapper-centered-name' : ('text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9')))">
+            <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
               {{ map.name }}
             </div>
+            }
             }
           </div>
         </div>

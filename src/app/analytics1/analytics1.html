@@ -34,18 +34,31 @@
                 <div class="frame-wrapper">
                     <div class="frame-4" [class.single-map]="mapsAnalysis.length === 1">
                         @for (map of mapsAnalysis; track map.name; let i = $index) {
-                        <img [class]="mapsAnalysis.length === 1 ? 'map-centered' : (i === 0 ? 'mask-group' : (i === 1 ? 'mask-group-2' : 'mask-group-3'))"
+                        @if (mapsAnalysis.length === 1) {
+                        <div class="map-centered"
+                            (click)="navigateToMapAnalysis(map.name)"
+                            style="cursor: pointer;">
+                            <img [src]="map.image" [alt]="map.name" />
+                            <div class="text-wrapper-centered-wr"
+                                [style.color]="map.winRate > 50 ? '#00ff26' : '#ff4040'">
+                                {{ map.winRate }}%
+                            </div>
+                            <div class="text-wrapper-centered-name">
+                                {{ map.name }}
+                            </div>
+                        </div>
+                        } @else {
+                        <img [class]="i === 0 ? 'mask-group' : (i === 1 ? 'mask-group-2' : 'mask-group-3')"
                             [src]="map.image" [alt]="map.name"
                             (click)="i === 0 ? navigateToMapAnalysis(map.name) : null"
                             [style.cursor]="i === 0 ? 'pointer' : 'default'" />
-                        <div [class]="mapsAnalysis.length === 1 ? 'text-wrapper-centered-wr' : ('text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7')))"
+                        <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))"
                             [style.color]="map.winRate > 50 ? '#00ff26' : '#ff4040'">
                             {{ map.winRate }}%
                         </div>
-                        <div [class]="mapsAnalysis.length === 1 ? 'text-wrapper-centered-name' : ('text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9')))">
+                        <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
                             {{ map.name }}
                         </div>
-                        @if (mapsAnalysis.length > 1) {
                         <div [class]="'frame-' + (i === 0 ? '7' : (i === 1 ? '6' : '5'))">
                             <div class="text-wrapper-10">i</div>
                         </div>

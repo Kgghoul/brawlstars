@@ -49,7 +49,9 @@ export class AnalyticsService {
     
     return this.apiService.getTopBrawlers(this.currentPlayerId).pipe(
       map(response => {
-        return response.brawlers.slice(0, limit).map(brawler => ({
+        // Сортируем по винрейту от ВЫСОКОГО к НИЗКОМУ (лучшие первые)
+        const sorted = [...response.brawlers].sort((a, b) => b.win_rate - a.win_rate);
+        return sorted.slice(0, limit).map(brawler => ({
           name: brawler.brawler,
           winRate: brawler.win_rate,
           pickRate: this.calculatePickRate(brawler.matches, response.brawlers),
@@ -75,7 +77,7 @@ export class AnalyticsService {
 
     return this.apiService.getTopBrawlers(this.currentPlayerId).pipe(
       map(response => {
-        // Сортируем по винрейту (от худшего к лучшему) и берем первые limit
+        // Сортируем по винрейту от НИЗКОГО к ВЫСОКОМУ (худшие первые)
         const sorted = [...response.brawlers].sort((a, b) => a.win_rate - b.win_rate);
         return sorted.slice(0, limit).map(brawler => ({
           name: brawler.brawler,

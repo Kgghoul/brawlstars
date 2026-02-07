@@ -46,7 +46,7 @@ export class AnalyticsService {
     if (!this.currentPlayerId) {
       return of([]);
     }
-    
+
     return this.apiService.getTopBrawlers(this.currentPlayerId).pipe(
       map(response => {
         // Сортируем по винрейту от ВЫСОКОГО к НИЗКОМУ (лучшие первые)

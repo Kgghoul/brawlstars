@@ -35,12 +35,9 @@
                     <div class="frame-4" [class.single-map]="mapsAnalysis.length === 1">
                         @for (map of mapsAnalysis; track map.name; let i = $index) {
                         @if (mapsAnalysis.length === 1) {
-                        <div class="map-centered"
-                            (click)="navigateToMapAnalysis(map.name)"
-                            style="cursor: pointer;">
+                        <div class="map-centered" (click)="navigateToMapAnalysis(map.name)" style="cursor: pointer;">
                             <img [src]="map.image" [alt]="map.name" />
-                            <div class="text-wrapper-centered-wr"
-                                [style.color]="getWinRateColor(map.winRate)">
+                            <div class="text-wrapper-centered-wr" [style.color]="getWinRateColor(map.winRate)">
                                 {{ map.winRate }}%
                             </div>
                             <div class="text-wrapper-centered-name">

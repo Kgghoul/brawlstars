@@ -42,24 +42,20 @@ export class AnalyticsService {
    */
   getTopBrawlers(limit: number = 3): Observable<BrawlerDisplay[]> {
     if (!this.currentPlayerId) {
-      console.error('❌ Player ID не установлен');
       return of([]);
     }
-
-    console.log('🔄 Запрос топ бойцов для игрока:', this.currentPlayerId);
     
     return this.apiService.getTopBrawlers(this.currentPlayerId).pipe(
       map(response => {
-        console.log('📦 Ответ от API:', response);
         return response.brawlers.slice(0, limit).map(brawler => ({
           name: brawler.brawler,
-          winRate: Math.round(brawler.win_rate * 100),
+          winRate: brawler.win_rate,
           pickRate: this.calculatePickRate(brawler.matches, response.brawlers),
           avatar: this.getBrawlerAvatar(brawler.brawler)
         }));
       }),
       catchError(error => {
-        console.error('❌ Ошибка получения топ бойцов:', error);
+        console.error('Ошибка получения топ бойцов:', error);
         return of([]);
       })
     );
@@ -79,7 +75,7 @@ export class AnalyticsService {
         const sorted = [...response.brawlers].sort((a, b) => a.win_rate - b.win_rate);
         return sorted.slice(0, limit).map(brawler => ({
           name: brawler.brawler,
-          winRate: Math.round(brawler.win_rate * 100),
+          winRate: brawler.win_rate, // API уже возвращает проценты
           pickRate: this.calculatePickRate(brawler.matches, response.brawlers),
           avatar: this.getBrawlerAvatar(brawler.brawler)
         }));

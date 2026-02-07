@@ -41,8 +41,6 @@ export class AnalyticsComponent implements OnInit {
   ngOnInit(): void {
     // Используем ID игрока из environment
     const playerId = environment.playerId || '101';
-    console.log('Player ID:', playerId);
-    console.log('API URL:', environment.apiUrl);
     this.analyticsService.setPlayerId(playerId);
     this.loadAnalyticsData();
   }
@@ -57,12 +55,10 @@ export class AnalyticsComponent implements OnInit {
     // Загружаем топ бойцов
     this.analyticsService.getTopBrawlers(3).subscribe({
       next: (brawlers) => {
-        console.log('✅ Получены лучшие бойцы:', brawlers);
         this.bestBrawlers = brawlers;
       },
       error: (err) => {
-        console.error('❌ Ошибка загрузки топ бойцов:', err);
-        console.error('Детали ошибки:', err.status, err.statusText, err.error);
+        console.error('Ошибка загрузки топ бойцов:', err);
         this.error = 'Не удалось загрузить данные';
         this.bestBrawlers = [];
       }
@@ -71,13 +67,11 @@ export class AnalyticsComponent implements OnInit {
     // Загружаем худших бойцов
     this.analyticsService.getWorstBrawlers(3).subscribe({
       next: (brawlers) => {
-        console.log('✅ Получены худшие бойцы:', brawlers);
         this.worstBrawlers = brawlers;
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('❌ Ошибка загрузки худших бойцов:', err);
-        console.error('Детали ошибки:', err.status, err.statusText, err.error);
+        console.error('Ошибка загрузки худших бойцов:', err);
         this.error = 'Не удалось загрузить данные';
         this.worstBrawlers = [];
         this.isLoading = false;

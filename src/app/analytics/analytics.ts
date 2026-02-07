@@ -2,6 +2,7 @@ import { Component, signal, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { AnalyticsService, BrawlerDisplay, MapDisplay } from '../services/analytics.service';
+import { environment } from '../../environments/environment';
 
 @Component({
   selector: 'app-analytics',
@@ -38,16 +39,10 @@ export class AnalyticsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Установите ID игрока здесь
-    // Можно получить из роута, localStorage или другого источника
-    const playerId = this.getPlayerIdFromStorage();
-    if (playerId) {
-      this.analyticsService.setPlayerId(playerId);
-      this.loadAnalyticsData();
-    } else {
-      // Если ID игрока не найден, используем демо-данные
-      this.loadDemoData();
-    }
+    // Используем ID игрока из environment
+    const playerId = environment.playerId || '101';
+    this.analyticsService.setPlayerId(playerId);
+    this.loadAnalyticsData();
   }
 
   /**

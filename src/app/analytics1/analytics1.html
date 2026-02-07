@@ -40,7 +40,7 @@
                             style="cursor: pointer;">
                             <img [src]="map.image" [alt]="map.name" />
                             <div class="text-wrapper-centered-wr"
-                                [style.color]="map.winRate > 50 ? '#00ff26' : '#ff4040'">
+                                [style.color]="getWinRateColor(map.winRate)">
                                 {{ map.winRate }}%
                             </div>
                             <div class="text-wrapper-centered-name">
@@ -53,7 +53,7 @@
                             (click)="i === 0 ? navigateToMapAnalysis(map.name) : null"
                             [style.cursor]="i === 0 ? 'pointer' : 'default'" />
                         <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))"
-                            [style.color]="map.winRate > 50 ? '#00ff26' : '#ff4040'">
+                            [style.color]="getWinRateColor(map.winRate)">
                             {{ map.winRate }}%
                         </div>
                         <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">

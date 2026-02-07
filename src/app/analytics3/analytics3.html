@@ -27,7 +27,7 @@
               <img class="map-image" [src]="mapData.image" [alt]="mapData.name" />
               <div class="map-overlay">
                 <div class="map-name-overlay">{{ mapData.name }}</div>
-                <div class="map-winrate" [style.color]="mapData.winRate > 50 ? '#00ff26' : '#ff4040'">
+                <div class="map-winrate" [style.color]="getWinRateColor(mapData.winRate)">
                   {{ mapData.winRate }}%
                 </div>
               </div>
@@ -58,7 +58,7 @@
               <div class="text-wrapper-11">{{ brawler.name }}</div>
             </div>
             <div class="frame-9">
-              <div class="text-wrapper-12">{{ brawler.winRate }}%</div>
+              <div class="text-wrapper-12" [style.color]="getWinRateColor(brawler.winRate)">{{ brawler.winRate }}%</div>
               <div class="text-wrapper-13">{{ brawler.pickRate }}%</div>
             </div>
           </div>
@@ -81,7 +81,7 @@
               <div class="text-wrapper-11">{{ brawler.name }}</div>
             </div>
             <div class="frame-9">
-              <div class="text-wrapper-18">{{ brawler.winRate }}%</div>
+              <div class="text-wrapper-18" [style.color]="getWinRateColor(brawler.winRate)">{{ brawler.winRate }}%</div>
               <div class="text-wrapper-13">{{ brawler.pickRate }}%</div>
             </div>
           </div>

@@ -26,12 +26,12 @@
             <div [class]="'map-container ' + (bestMaps.length === 1 ? 'map-centered' : (i === 0 ? 'mask-group' : (i === 1 ? 'img' : 'mask-group-2')))">
               <img [src]="map.image" [alt]="map.name" />
               @if (bestMaps.length === 1) {
-              <div class="text-wrapper-centered-wr">{{ map.winRate }}%</div>
+              <div class="text-wrapper-centered-wr" [style.color]="getWinRateColor(map.winRate)">{{ map.winRate }}%</div>
               <div class="text-wrapper-centered-name">{{ map.name }}</div>
               }
             </div>
             @if (bestMaps.length > 1) {
-            <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))">
+            <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))" [style.color]="getWinRateColor(map.winRate)">
               {{ map.winRate }}%
             </div>
             <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
@@ -52,12 +52,12 @@
             <div [class]="'map-container ' + (worstMaps.length === 1 ? 'map-centered' : (i === 0 ? 'mask-group' : (i === 1 ? 'img' : 'mask-group-2')))">
               <img [src]="map.image" [alt]="map.name" />
               @if (worstMaps.length === 1) {
-              <div class="text-wrapper-centered-wr" style="color: #ff4040;">{{ map.winRate }}%</div>
+              <div class="text-wrapper-centered-wr" [style.color]="getWinRateColor(map.winRate)">{{ map.winRate }}%</div>
               <div class="text-wrapper-centered-name">{{ map.name }}</div>
               }
             </div>
             @if (worstMaps.length > 1) {
-            <div [class]="'text-wrapper-' + (i === 0 ? '11' : (i === 1 ? '12' : '13'))">
+            <div [class]="'text-wrapper-' + (i === 0 ? '11' : (i === 1 ? '12' : '13'))" [style.color]="getWinRateColor(map.winRate)">
               {{ map.winRate }}%
             </div>
             <div [class]="'text-wrapper-' + (i === 0 ? '4' : (i === 1 ? '8' : '9'))">
@@ -85,7 +85,7 @@
             <div class="text-wrapper-16">{{ brawler.name }}</div>
           </div>
           <div class="frame-8">
-            <div class="text-wrapper-17">{{ brawler.winRate }}%</div>
+            <div class="text-wrapper-17" [style.color]="getWinRateColor(brawler.winRate)">{{ brawler.winRate }}%</div>
             <div class="text-wrapper-18">{{ brawler.pickRate }}%</div>
           </div>
         </div>
@@ -108,7 +108,7 @@
             <div class="text-wrapper-16">{{ brawler.name }}</div>
           </div>
           <div class="frame-8">
-            <div class="text-wrapper-23">{{ brawler.winRate }}%</div>
+            <div class="text-wrapper-23" [style.color]="getWinRateColor(brawler.winRate)">{{ brawler.winRate }}%</div>
             <div class="text-wrapper-18">{{ brawler.pickRate }}%</div>
           </div>
         </div>

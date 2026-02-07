@@ -36,6 +36,22 @@ export class AnalyticsComponent implements OnInit {
     private cdr: ChangeDetectorRef
   ) { }
 
+  /**
+   * Получить цвет винрейта на основе значения
+   * < 30% - красный
+   * 30-60% - жёлтый
+   * 61-100% - зелёный
+   */
+  getWinRateColor(winRate: number): string {
+    if (winRate < 30) {
+      return '#ff4040'; // Красный
+    } else if (winRate <= 60) {
+      return '#ffcc00'; // Жёлтый
+    } else {
+      return '#00ff26'; // Зелёный
+    }
+  }
+
   ngOnInit(): void {
     console.log('🚀 ngOnInit вызван');
     // Используем ID игрока из environment

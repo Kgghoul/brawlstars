@@ -70,7 +70,7 @@
                 <!-- Средний WR -->
                 <p class="WR">
                     <span class="span">СРЕДНИЙ WR: </span>
-                    <span class="text-wrapper-12">{{ averageWR }}%</span>
+                    <span class="text-wrapper-12" [style.color]="getWinRateColor(averageWR)">{{ averageWR }}%</span>
                 </p>
             </div>
         </div>

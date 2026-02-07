@@ -39,7 +39,10 @@ export class AnalyticsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Используем ID игрока из environment
+    // Сначала загружаем demo-данные
+    this.loadDemoData();
+    
+    // Затем пытаемся загрузить реальные данные
     const playerId = environment.playerId || '101';
     this.analyticsService.setPlayerId(playerId);
     this.loadAnalyticsData();
@@ -55,25 +58,31 @@ export class AnalyticsComponent implements OnInit {
     // Загружаем топ бойцов
     this.analyticsService.getTopBrawlers(3).subscribe({
       next: (brawlers) => {
-        this.bestBrawlers = brawlers;
+        if (brawlers && brawlers.length > 0) {
+          this.bestBrawlers = brawlers;
+          console.log('✅ Загружены лучшие бойцы:', brawlers);
+        }
       },
       error: (err) => {
-        console.error('Ошибка загрузки топ бойцов:', err);
-        this.error = 'Не удалось загрузить данные';
-        this.loadDemoData();
+        console.error('❌ Ошибка загрузки топ бойцов:', err);
+        console.log('📊 Используются demo-данные');
+        this.error = 'Не удалось загрузить данные с сервера. Показаны тестовые данные.';
       }
     });
 
     // Загружаем худших бойцов
     this.analyticsService.getWorstBrawlers(3).subscribe({
       next: (brawlers) => {
-        this.worstBrawlers = brawlers;
+        if (brawlers && brawlers.length > 0) {
+          this.worstBrawlers = brawlers;
+          console.log('✅ Загружены худшие бойцы:', brawlers);
+        }
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('Ошибка загрузки худших бойцов:', err);
-        this.error = 'Не удалось загрузить данные';
-        this.loadDemoData();
+        console.error('❌ Ошибка загрузки худших бойцов:', err);
+        console.log('📊 Используются demo-данные');
+        this.error = 'Не удалось загрузить данные с сервера. Показаны тестовые данные.';
         this.isLoading = false;
       }
     });
@@ -84,16 +93,16 @@ export class AnalyticsComponent implements OnInit {
    */
   loadDemoData(): void {
     this.bestBrawlers = [
-    { name: 'Алли', winRate: 99, pickRate: 20, avatar: 'assets/brawlers/Alli.png' },
-    { name: 'Брок', winRate: 87, pickRate: 15, avatar: 'assets/brawlers/broke.png' },
-    { name: 'Белль', winRate: 79, pickRate: 7, avatar: 'assets/brawlers/bell.png' }
-  ];
+      { name: 'Алли', winRate: 99, pickRate: 20, avatar: 'assets/brawlers/Alli.png' },
+      { name: 'Брок', winRate: 87, pickRate: 15, avatar: 'assets/brawlers/broke.png' },
+      { name: 'Белль', winRate: 79, pickRate: 7, avatar: 'assets/brawlers/bell.png' }
+    ];
 
     this.worstBrawlers = [
-    { name: 'Алли', winRate: 0, pickRate: 1, avatar: 'assets/brawlers/Alli.png' },
-    { name: 'Брок', winRate: 1, pickRate: 1, avatar: 'assets/brawlers/broke.png' },
-    { name: 'Белль', winRate: 2, pickRate: 1, avatar: 'assets/brawlers/bell.png' }
-  ];
+      { name: 'Алли', winRate: 0, pickRate: 1, avatar: 'assets/brawlers/Alli.png' },
+      { name: 'Брок', winRate: 1, pickRate: 1, avatar: 'assets/brawlers/broke.png' },
+      { name: 'Белль', winRate: 2, pickRate: 1, avatar: 'assets/brawlers/bell.png' }
+    ];
   }
 
   /**

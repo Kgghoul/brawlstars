@@ -5,6 +5,20 @@
     <!-- Заголовок -->
     <div class="text-wrapper-3">АНАЛИТИКА</div>
 
+    <!-- Сообщение об ошибке -->
+    @if (error) {
+    <div style="padding: 16px; margin: 16px; background: rgba(255, 64, 64, 0.2); border: 1px solid #ff4040; border-radius: 8px; color: #fff;">
+      ⚠️ {{ error }}
+    </div>
+    }
+
+    <!-- Индикатор загрузки -->
+    @if (isLoading) {
+    <div style="padding: 16px; margin: 16px; text-align: center; color: #fff;">
+      🔄 Загрузка данных...
+    </div>
+    }
+
     <!-- Табы -->
     <div class="frame">
       <div class="div-wrapper" [class.active]="activeTab() === 'general'" (click)="setTab('general')">

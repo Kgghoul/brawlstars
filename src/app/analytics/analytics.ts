@@ -39,10 +39,7 @@ export class AnalyticsComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // Сначала загружаем demo-данные
-    this.loadDemoData();
-    
-    // Затем пытаемся загрузить реальные данные
+    // Используем ID игрока из environment
     const playerId = environment.playerId || '101';
     this.analyticsService.setPlayerId(playerId);
     this.loadAnalyticsData();
@@ -58,60 +55,32 @@ export class AnalyticsComponent implements OnInit {
     // Загружаем топ бойцов
     this.analyticsService.getTopBrawlers(3).subscribe({
       next: (brawlers) => {
-        if (brawlers && brawlers.length > 0) {
-          this.bestBrawlers = brawlers;
-          console.log('✅ Загружены лучшие бойцы:', brawlers);
-        }
+        console.log('Получены лучшие бойцы:', brawlers);
+        this.bestBrawlers = brawlers;
       },
       error: (err) => {
-        console.error('❌ Ошибка загрузки топ бойцов:', err);
-        console.log('📊 Используются demo-данные');
-        this.error = 'Не удалось загрузить данные с сервера. Показаны тестовые данные.';
+        console.error('Ошибка загрузки топ бойцов:', err);
+        this.error = 'Не удалось загрузить данные';
+        this.bestBrawlers = [];
       }
     });
 
     // Загружаем худших бойцов
     this.analyticsService.getWorstBrawlers(3).subscribe({
       next: (brawlers) => {
-        if (brawlers && brawlers.length > 0) {
-          this.worstBrawlers = brawlers;
-          console.log('✅ Загружены худшие бойцы:', brawlers);
-        }
+        console.log('Получены худшие бойцы:', brawlers);
+        this.worstBrawlers = brawlers;
         this.isLoading = false;
       },
       error: (err) => {
-        console.error('❌ Ошибка загрузки худших бойцов:', err);
-        console.log('📊 Используются demo-данные');
-        this.error = 'Не удалось загрузить данные с сервера. Показаны тестовые данные.';
+        console.error('Ошибка загрузки худших бойцов:', err);
+        this.error = 'Не удалось загрузить данные';
+        this.worstBrawlers = [];
         this.isLoading = false;
       }
     });
   }
 
-  /**
-   * Загрузка демо-данных (заглушка)
-   */
-  loadDemoData(): void {
-    this.bestBrawlers = [
-      { name: 'Алли', winRate: 99, pickRate: 20, avatar: 'assets/brawlers/Alli.png' },
-      { name: 'Брок', winRate: 87, pickRate: 15, avatar: 'assets/brawlers/broke.png' },
-      { name: 'Белль', winRate: 79, pickRate: 7, avatar: 'assets/brawlers/bell.png' }
-    ];
-
-    this.worstBrawlers = [
-      { name: 'Алли', winRate: 0, pickRate: 1, avatar: 'assets/brawlers/Alli.png' },
-      { name: 'Брок', winRate: 1, pickRate: 1, avatar: 'assets/brawlers/broke.png' },
-      { name: 'Белль', winRate: 2, pickRate: 1, avatar: 'assets/brawlers/bell.png' }
-    ];
-  }
-
-  /**
-   * Получить ID игрока из хранилища
-   */
-  private getPlayerIdFromStorage(): string | null {
-    // Попробуем получить ID из localStorage
-    return localStorage.getItem('playerId');
-  }
 
   /**
    * Синхронизация данных игрока

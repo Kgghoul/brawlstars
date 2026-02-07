@@ -5,20 +5,6 @@
     <!-- Заголовок -->
     <div class="text-wrapper-3">АНАЛИТИКА</div>
 
-    <!-- Сообщение об ошибке -->
-    @if (error) {
-    <div style="padding: 16px; margin: 16px; background: rgba(255, 64, 64, 0.2); border: 1px solid #ff4040; border-radius: 8px; color: #fff;">
-      ⚠️ {{ error }}
-    </div>
-    }
-
-    <!-- Индикатор загрузки -->
-    @if (isLoading) {
-    <div style="padding: 16px; margin: 16px; text-align: center; color: #fff;">
-      🔄 Загрузка данных...
-    </div>
-    }
-
     <!-- Табы -->
     <div class="frame">
       <div class="div-wrapper" [class.active]="activeTab() === 'general'" (click)="setTab('general')">
@@ -31,6 +17,25 @@
 
     <!-- Основной контент -->
     <div class="frame-2">
+      
+      <!-- Индикатор загрузки -->
+      @if (isLoading) {
+        <div style="color: white; text-align: center; padding: 20px;">
+          Загрузка данных...
+        </div>
+      }
+
+      <!-- Сообщение об ошибке -->
+      @if (error) {
+        <div style="color: #ff4040; text-align: center; padding: 20px;">
+          {{ error }}
+          <br>
+          <button (click)="loadAnalyticsData()" style="margin-top: 10px; padding: 8px 16px; background: #EF7527; color: white; border: none; border-radius: 4px; cursor: pointer;">
+            Повторить попытку
+          </button>
+        </div>
+      }
+
       <!-- Лучшие карты -->
       <div class="frame-3">
         <div class="text-wrapper-10">ЛУЧШИЕ КАРТЫ</div>
@@ -73,12 +78,18 @@
 
       <!-- Лучшие бойцы -->
       <div class="frame-5">
-        <div class="text-wrapper-15">ЛУЧШИЕ БОЙЦЫ</div>
+        <div class="text-wrapper-15">ЛУЧШИЕ БОЙЦЫ ({{ bestBrawlers.length }})</div>
         <div class="frame-11">
           <div class="text-wrapper-19">БОЕЦ</div>
           <div class="text-wrapper-20">WR</div>
           <div class="text-wrapper-21">PICK</div>
         </div>
+
+        @if (bestBrawlers.length === 0 && !isLoading) {
+          <div style="color: rgba(255,255,255,0.5); text-align: center; padding: 20px;">
+            Нет данных
+          </div>
+        }
 
         @for (brawler of bestBrawlers; track brawler.name; let i = $index) {
         <div [class]="i === 0 ? 'frame-6' : (i === 1 ? 'frame-9' : 'frame-10')">
@@ -96,12 +107,18 @@
 
       <!-- Худшие бойцы -->
       <div class="frame-5">
-        <div class="text-wrapper-22">ХУДШИЕ БОЙЦЫ</div>
+        <div class="text-wrapper-22">ХУДШИЕ БОЙЦЫ ({{ worstBrawlers.length }})</div>
         <div class="frame-11">
           <div class="text-wrapper-19">БОЕЦ</div>
           <div class="text-wrapper-20">WR</div>
           <div class="text-wrapper-21">PICK</div>
         </div>
+
+        @if (worstBrawlers.length === 0 && !isLoading) {
+          <div style="color: rgba(255,255,255,0.5); text-align: center; padding: 20px;">
+            Нет данных
+          </div>
+        }
 
         @for (brawler of worstBrawlers; track brawler.name; let i = $index) {
         <div [class]="i === 0 ? 'frame-6' : (i === 1 ? 'frame-9' : 'frame-10')">

@@ -36,8 +36,8 @@
                         @for (map of mapsAnalysis; track map.name; let i = $index) {
                         <img [class]="i === 0 ? 'mask-group' : (i === 1 ? 'mask-group-2' : 'mask-group-3')"
                             [src]="map.image" [alt]="map.name"
-                            (click)="map.name === 'Вжух-Вжух' ? navigateToMapAnalysis(map.name) : null"
-                            [style.cursor]="map.name === 'Вжух-Вжух' ? 'pointer' : 'default'" />
+                            (click)="i === 0 ? navigateToMapAnalysis(map.name) : null"
+                            [style.cursor]="i === 0 ? 'pointer' : 'default'" />
                         <div [class]="'text-wrapper-' + (i === 0 ? '5' : (i === 1 ? '6' : '7'))"
                             [style.color]="map.winRate > 50 ? '#00ff26' : '#ff4040'">
                             {{ map.winRate }}%

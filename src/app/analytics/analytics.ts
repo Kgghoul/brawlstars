@@ -17,17 +17,14 @@ export class AnalyticsComponent implements OnInit {
   bestBrawlers: BrawlerDisplay[] = [];
   worstBrawlers: BrawlerDisplay[] = [];
 
-  // Данные для карт (временные, пока нет API для карт)
+  // Данные для карт (API не предоставляет endpoint для всех карт, только /maps/{map}/brawlers)
+  // У игрока 101 только одна карта: Hard Rock Mine
   bestMaps: MapDisplay[] = [
-    { name: 'Кремовый торт', winRate: 89, image: 'assets/maps/creamycake.png' },
-    { name: 'Взятие моста', winRate: 91, image: 'assets/maps/bridgetaking.png' },
-    { name: 'Роковая шахта', winRate: 87, image: 'assets/maps/mine.png' }
+    { name: 'Hard Rock Mine', winRate: 0, image: 'assets/maps/mine.png' }
   ];
 
   worstMaps: MapDisplay[] = [
-    { name: 'Кремовый торт', winRate: 32, image: 'assets/maps/creamycake.png' },
-    { name: 'Взятие моста', winRate: 27, image: 'assets/maps/bridgetaking.png' },
-    { name: 'Роковая шахта', winRate: 41, image: 'assets/maps/mine.png' }
+    { name: 'Hard Rock Mine', winRate: 0, image: 'assets/maps/mine.png' }
   ];
 
   isLoading = false;

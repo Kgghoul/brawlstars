@@ -22,14 +22,12 @@ export class Analytics1Component {
     { name: 'Горячая зона', icon: 'assets/modes/hotzone.png' }
   ];
 
-  // Данные для карт в анализе
+  // Данные для карт в анализе (реальные данные игрока 101)
   mapsAnalysis = [
-    { name: 'Кристальный форт', winRate: 21, image: 'assets/maps/crystalfort.png' },
-    { name: 'Вжух-Вжух', winRate: 91, image: 'assets/maps/juhjuh.png' },
-    { name: 'Роковая шахта', winRate: 87, image: 'assets/maps/mine.png' }
+    { name: 'Hard Rock Mine', winRate: 0, image: 'assets/maps/mine.png' }
   ];
 
-  averageWR = 67;
+  averageWR = 0;
 
   setTab(tab: 'general' | 'detailed') {
     this.activeTab.set(tab);

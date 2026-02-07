@@ -14,27 +14,23 @@ export class Analytics3Component {
 
   constructor(private router: Router) { }
 
-  // Данные карты
+  // Данные карты (реальные данные игрока 101)
   mapData = {
-    name: 'Вжух-Вжух',
-    image: 'assets/maps/juhjuh.png',
-    wins: 94,
-    losses: 10,
-    winRate: 91
+    name: 'Hard Rock Mine',
+    image: 'assets/maps/mine.png',
+    wins: 0,
+    losses: 1,
+    winRate: 0
   };
 
-  // Лучшие бойцы
+  // Лучшие бойцы на этой карте (реальные данные из API)
   bestBrawlers = [
-    { name: 'Алли', avatar: 'assets/brawlers/Alli.png', winRate: 99, pickRate: 20 },
-    { name: 'Брок', avatar: 'assets/brawlers/broke.png', winRate: 87, pickRate: 15 },
-    { name: 'Белль', avatar: 'assets/brawlers/bell.png', winRate: 79, pickRate: 7 }
+    { name: 'Pam', avatar: 'assets/brawlers/pam.png', winRate: 0, pickRate: 100 }
   ];
 
-  // Худшие бойцы
+  // Худшие бойцы на этой карте
   worstBrawlers = [
-    { name: 'Алли', avatar: 'assets/brawlers/Alli.png', winRate: 0, pickRate: 1 },
-    { name: 'Брок', avatar: 'assets/brawlers/broke.png', winRate: 1, pickRate: 1 },
-    { name: 'Белль', avatar: 'assets/brawlers/bell.png', winRate: 2, pickRate: 1 }
+    { name: 'Pam', avatar: 'assets/brawlers/pam.png', winRate: 0, pickRate: 100 }
   ];
 
   setTab(tab: 'general' | 'detailed') {

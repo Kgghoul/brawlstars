@@ -1,5 +1,6 @@
 import asyncio
 import logging
+import aiohttp
 from aiogram import Bot, Dispatcher, F
 from aiogram.filters import Command, CommandStart
 from aiogram.types import Message, WebAppInfo, InlineKeyboardMarkup, InlineKeyboardButton
@@ -117,18 +118,37 @@ async def cmd_help(message: Message):
 @dp.message(Command("sync"))
 async def cmd_sync(message: Message):
     """Синхронизация данных"""
-    user_id = message.from_user.id
+    player_id = settings.DEFAULT_PLAYER_ID
     
     await message.answer("🔄 Синхронизация данных...")
     
-    # TODO: Вызов API для синхронизации
-    # await api.sync_player(user_id)
-    
-    await message.answer(
-        "✅ <b>Данные обновлены!</b>\n\n"
-        "Откройте аналитику, чтобы увидеть последние результаты.",
-        reply_markup=get_webapp_keyboard()
-    )
+    try:
+        # Вызов API для синхронизации
+        async with aiohttp.ClientSession() as session:
+            url = f"{settings.API_BASE_URL}/admin/sync/{player_id}"
+            async with session.post(url) as response:
+                if response.status == 200:
+                    data = await response.json()
+                    await message.answer(
+                        f"✅ <b>Данные обновлены!</b>\n\n"
+                        f"Player ID: <code>{data.get('player_id', player_id)}</code>\n"
+                        f"Последний матч: {data.get('last_match_time', 'Неизвестно')}\n\n"
+                        f"Откройте аналитику, чтобы увидеть последние результаты.",
+                        reply_markup=get_webapp_keyboard()
+                    )
+                else:
+                    await message.answer(
+                        "⚠️ <b>Ошибка синхронизации</b>\n\n"
+                        "Попробуйте позже или проверьте настройки.",
+                        reply_markup=get_webapp_keyboard()
+                    )
+    except Exception as e:
+        logger.error(f"Ошибка синхронизации: {e}")
+        await message.answer(
+            "❌ <b>Не удалось синхронизировать данные</b>\n\n"
+            "Проверьте подключение к интернету и попробуйте снова.",
+            reply_markup=get_webapp_keyboard()
+        )
 
 
 @dp.message(Command("player"))

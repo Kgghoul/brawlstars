@@ -10,10 +10,13 @@ class Settings(BaseSettings):
     # API Settings
     API_HOST: str = "0.0.0.0"
     API_PORT: int = 3000
-    API_BASE_URL: str = "http://localhost:3000"
+    API_BASE_URL: str = "http://91.229.11.191:8080"
     
     # Web App
-    WEB_APP_URL: str = "http://localhost:4200"
+    WEB_APP_URL: str = "https://kgghoul.github.io/brawlstars"
+    
+    # Player ID
+    DEFAULT_PLAYER_ID: str = "101"
     
     # Database
     DATABASE_URL: str = "sqlite+aiosqlite:///./brawlstars.db"

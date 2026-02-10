@@ -532,6 +532,21 @@
   background: linear-gradient(180deg, rgba(30, 27, 46, 0.8) 0%, rgba(0, 0, 0, 0.8) 100%);
   overflow: hidden;
   padding: 20px;
+
+  .chart-empty,
+  .chart-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 180px;
+    color: rgba(255, 255, 255, 0.6);
+    font-family: "Montserrat", Helvetica, sans-serif;
+    font-size: 14px;
+  }
+
+  .chart-loading {
+    color: #EF7527;
+  }
 }
 
 .screen .text-wrapper-15 {
@@ -577,6 +592,7 @@
   width: 69.52px;
   height: 70.19px;
   object-fit: cover;
+  border-radius: 50%;
 }
 
 .screen .text-wrapper-16 {

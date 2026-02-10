@@ -5,6 +5,7 @@ import {
   TopBrawlersResponse,
   BrawlerWinrateHistoryResponse,
   MapBrawlersResponse,
+  TopMapsResponse,
   SyncResponse,
   ErrorResponse
 } from '../models/api.models';
@@ -35,19 +36,24 @@ export class ApiService {
   }
 
   /**
-   * История винрейта бойца (график)
-   * GET /analytics/{playerId}/brawlers/{brawler}/winrate-history
+   * История винрейта игрока по дням (график)
+   * GET /analytics/{playerId}/winrate-history?days=30
    */
-  getBrawlerWinrateHistory(
-    playerId: string,
-    brawler: string,
-    days: number = 30
-  ): Observable<BrawlerWinrateHistoryResponse> {
+  getPlayerWinrateHistory(playerId: string, days: number = 30): Observable<BrawlerWinrateHistoryResponse> {
     const params = new HttpParams().set('days', days.toString());
     return this.http.get<BrawlerWinrateHistoryResponse>(
-      `${this.baseUrl}/analytics/${playerId}/brawlers/${brawler}/winrate-history`,
+      `${this.baseUrl}/analytics/${playerId}/winrate-history`,
       { params }
     );
+  }
+
+  /** @deprecated использовать getPlayerWinrateHistory — бэкенд отдаёт общий винрейт по игроку */
+  getBrawlerWinrateHistory(
+    playerId: string,
+    _brawler: string,
+    days: number = 30
+  ): Observable<BrawlerWinrateHistoryResponse> {
+    return this.getPlayerWinrateHistory(playerId, days);
   }
 
   /**
@@ -56,5 +62,23 @@ export class ApiService {
    */
   getMapBrawlers(playerId: string, map: string): Observable<MapBrawlersResponse> {
     return this.http.get<MapBrawlersResponse>(`${this.baseUrl}/analytics/${playerId}/maps/${map}/brawlers`);
+  }
+
+  /**
+   * Топ лучших карт по бойцу
+   * GET /analytics/{playerId}/maps/best?limit=3
+   */
+  getBestMaps(playerId: string, limit: number = 3): Observable<TopMapsResponse> {
+    const params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<TopMapsResponse>(`${this.baseUrl}/analytics/${playerId}/maps/best`, { params });
+  }
+
+  /**
+   * Топ худших карт по бойцу
+   * GET /analytics/{playerId}/maps/worst?limit=3
+   */
+  getWorstMaps(playerId: string, limit: number = 3): Observable<TopMapsResponse> {
+    const params = new HttpParams().set('limit', limit.toString());
+    return this.http.get<TopMapsResponse>(`${this.baseUrl}/analytics/${playerId}/maps/worst`, { params });
   }
 }

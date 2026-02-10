@@ -115,39 +115,24 @@
         }
       </div>
 
-      <!-- График последних матчей -->
+      <!-- График последних матчей (дата + соотношение побед/поражений) -->
       <div class="frame-chart">
         <div class="text-wrapper-24">Последние матчи</div>
-        
-        <!-- График (SVG) -->
         <div class="group-2">
-          <svg width="272" height="180" viewBox="0 0 272 180" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <!-- Горизонтальные линии сетки -->
-            <line x1="0" y1="18" x2="272" y2="18" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="36" x2="272" y2="36" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="54" x2="272" y2="54" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="72" x2="272" y2="72" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="90" x2="272" y2="90" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="108" x2="272" y2="108" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="126" x2="272" y2="126" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="144" x2="272" y2="144" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="162" x2="272" y2="162" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-            <line x1="0" y1="180" x2="272" y2="180" stroke="rgba(255, 255, 255, 0.1)" stroke-width="1" />
-
-            <!-- Заливка с градиентом -->
-            <path opacity="0.3" d="M59.0828 0L0 172V180H271.5V15L187.183 32L170.5 55H148L117.395 79L59.0828 0Z"
-              fill="url(#paint0_linear_0_213)" />
-            <!-- Четкая линия контура -->
-            <path d="M59.0828 0L0 172M271.5 15L187.183 32L170.5 55H148L117.395 79L59.0828 0" stroke="#EF7527"
-              stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" fill="none" />
-            <defs>
-              <linearGradient id="paint0_linear_0_213" x1="135.75" y1="0" x2="135.75" y2="180"
-                gradientUnits="userSpaceOnUse">
-                <stop stop-color="#EF7527" />
-                <stop offset="1" stop-color="#EF7527" stop-opacity="0" />
-              </linearGradient>
-            </defs>
-          </svg>
+          @if (recentMatchesData.length > 0) {
+            <app-winrate-chart
+              [data]="recentMatchesData"
+              [width]="272"
+              [height]="180"
+              [lineColor]="'#EF7527'"
+              [showGrid]="true"
+              [showPoints]="true">
+            </app-winrate-chart>
+          } @else if (!chartLoading && !error) {
+            <div class="chart-empty">Нет данных о матчах</div>
+          } @else if (chartLoading) {
+            <div class="chart-loading">Загрузка...</div>
+          }
         </div>
       </div>
     </div>

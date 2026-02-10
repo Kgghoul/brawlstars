@@ -6,6 +6,8 @@ export interface ChartPoint {
   y: number;
   date: string;
   winRate: number;
+  matches?: number;
+  wins?: number;
 }
 
 @Injectable({
@@ -48,7 +50,9 @@ export class ChartDataService {
         x,
         y,
         date: point.date,
-        winRate: Math.round(point.win_rate * 100)
+        winRate: Math.round(point.win_rate * 100),
+        matches: point.matches,
+        wins: point.wins
       });
     });
 

@@ -56,6 +56,8 @@ import { ChartDataService, ChartPoint } from '../services/chart-data.service';
             r="4"
             [attr.fill]="lineColor"
             class="chart-point"
+            (mouseenter)="showTooltip($event, point)"
+            (mouseleave)="hideTooltip()"
             [attr.data-date]="point.date"
             [attr.data-winrate]="point.winRate" />
         </g>
@@ -82,6 +84,9 @@ import { ChartDataService, ChartPoint } from '../services/chart-data.service';
         [style.top.px]="tooltipY">
         <div class="tooltip-date">{{ tooltipDate }}</div>
         <div class="tooltip-winrate">WR: {{ tooltipWinRate }}%</div>
+        <div class="tooltip-record" *ngIf="tooltipWins !== undefined && tooltipMatches !== undefined">
+          {{ tooltipWins }} побед / {{ tooltipMatches - tooltipWins }} поражений
+        </div>
       </div>
     </div>
   `,
@@ -113,17 +118,16 @@ import { ChartDataService, ChartPoint } from '../services/chart-data.service';
     }
 
     .chart-tooltip {
-      position: absolute;
-      background: rgba(0, 0, 0, 0.8);
+      position: fixed;
+      background: rgba(0, 0, 0, 0.85);
       color: #fff;
       padding: 8px 12px;
       border-radius: 6px;
       font-size: 12px;
       pointer-events: none;
-      z-index: 100;
+      z-index: 1000;
       white-space: nowrap;
       transform: translate(-50%, -100%);
-      margin-top: -8px;
     }
 
     .tooltip-date {
@@ -133,6 +137,12 @@ import { ChartDataService, ChartPoint } from '../services/chart-data.service';
 
     .tooltip-winrate {
       color: #EF7527;
+    }
+
+    .tooltip-record {
+      font-size: 11px;
+      color: rgba(255, 255, 255, 0.8);
+      margin-top: 2px;
     }
   `]
 })
@@ -158,6 +168,8 @@ export class WinrateChartComponent implements OnChanges {
   tooltipY: number = 0;
   tooltipDate: string = '';
   tooltipWinRate: number = 0;
+  tooltipWins: number | undefined;
+  tooltipMatches: number | undefined;
 
   constructor(private chartDataService: ChartDataService) {
     this.gradientId = `gradient-${Math.random().toString(36).substr(2, 9)}`;
@@ -194,10 +206,13 @@ export class WinrateChartComponent implements OnChanges {
 
   showTooltip(event: MouseEvent, point: ChartPoint): void {
     this.tooltipVisible = true;
-    this.tooltipX = point.x;
-    this.tooltipY = point.y;
+    const rect = (event.target as SVGElement).getBoundingClientRect();
+    this.tooltipX = rect.left + rect.width / 2;
+    this.tooltipY = rect.top - 8;
     this.tooltipDate = this.chartDataService.formatDate(point.date);
     this.tooltipWinRate = point.winRate;
+    this.tooltipWins = point.wins;
+    this.tooltipMatches = point.matches;
   }
 
   hideTooltip(): void {

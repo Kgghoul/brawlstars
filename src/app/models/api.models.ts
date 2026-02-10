@@ -17,6 +17,7 @@ export interface BrawlerStats {
   matches: number;
   wins: number;
   win_rate: number;
+  pick_rate?: number; // от бэкенда, иначе считали на фронте
 }
 
 export interface TopBrawlersResponse {
@@ -52,6 +53,19 @@ export interface MapBrawlersResponse {
   map: string;
   count: number;
   brawlers: MapBrawlerStats[];
+}
+
+export interface MapStats {
+  map: string;
+  matches: number;
+  wins: number;
+  win_rate: number;
+}
+
+export interface TopMapsResponse {
+  player_id: string;
+  count: number;
+  maps: MapStats[];
 }
 
 // ============= Error Response =============

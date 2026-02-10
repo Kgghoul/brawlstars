@@ -1,12 +1,15 @@
 import { Component, signal, OnInit, ChangeDetectorRef } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { forkJoin } from 'rxjs';
 import { AnalyticsService, BrawlerDisplay, MapDisplay } from '../services/analytics.service';
+import { WinrateChartComponent } from '../components/winrate-chart.component';
 import { environment } from '../../environments/environment';
+import { WinrateHistoryPoint } from '../models/api.models';
 
 @Component({
   selector: 'app-analytics',
-  imports: [CommonModule],
+  imports: [CommonModule, WinrateChartComponent],
   templateUrl: './analytics.html',
   styleUrl: './analytics.scss'
 })
@@ -17,18 +20,16 @@ export class AnalyticsComponent implements OnInit {
   bestBrawlers: BrawlerDisplay[] = [];
   worstBrawlers: BrawlerDisplay[] = [];
 
-  // Данные для карт (API не предоставляет endpoint для всех карт, только /maps/{map}/brawlers)
-  // У игрока 101 только одна карта: Hard Rock Mine
-  bestMaps: MapDisplay[] = [
-    { name: 'Hard Rock Mine', winRate: 0, image: 'assets/maps/mine.png' }
-  ];
-
-  worstMaps: MapDisplay[] = [
-    { name: 'Hard Rock Mine', winRate: 0, image: 'assets/maps/mine.png' }
-  ];
+  // Данные для карт (с API /maps/best и /maps/worst)
+  bestMaps: MapDisplay[] = [];
+  worstMaps: MapDisplay[] = [];
 
   isLoading = false;
+  chartLoading = false;
   error: string | null = null;
+
+  /** Данные для графика «Последние матчи» (дата + win rate) */
+  recentMatchesData: WinrateHistoryPoint[] = [];
 
   constructor(
     private router: Router,
@@ -53,13 +54,8 @@ export class AnalyticsComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    console.log('🚀 ngOnInit вызван');
-    // Используем ID игрока из environment
     const playerId = environment.playerId || '101';
-    console.log('📋 Player ID:', playerId);
-    console.log('🌐 API URL:', environment.apiUrl);
     this.analyticsService.setPlayerId(playerId);
-    console.log('📞 Вызываем loadAnalyticsData...');
     this.loadAnalyticsData();
   }
 
@@ -67,45 +63,71 @@ export class AnalyticsComponent implements OnInit {
    * Загрузка данных аналитики с сервера
    */
   loadAnalyticsData(): void {
-    console.log('🔄 loadAnalyticsData начал работу');
     this.isLoading = true;
     this.error = null;
 
-    // Загружаем топ бойцов
-    console.log('📤 Запрашиваем топ бойцов...');
     this.analyticsService.getTopBrawlers(3).subscribe({
       next: (brawlers) => {
-        console.log('✅ Получены лучшие бойцы:', brawlers);
         this.bestBrawlers = brawlers;
         this.cdr.detectChanges();
-        console.log('🔄 Change detection triggered');
       },
       error: (err) => {
         console.error('❌ Ошибка загрузки топ бойцов:', err);
         this.error = 'Не удалось загрузить данные';
         this.bestBrawlers = [];
+        this.chartLoading = false;
       }
     });
 
-    // Загружаем худших бойцов
-    console.log('📤 Запрашиваем худших бойцов...');
-    this.analyticsService.getWorstBrawlers(3).subscribe({
-      next: (brawlers) => {
-        console.log('✅ Получены худшие бойцы:', brawlers);
-        this.worstBrawlers = brawlers;
+    this.loadRecentMatchesChart();
+
+    forkJoin({
+      worstBrawlers: this.analyticsService.getWorstBrawlers(3),
+      bestMaps: this.analyticsService.getBestMaps(3),
+      worstMaps: this.analyticsService.getWorstMaps(3)
+    }).subscribe({
+      next: ({ worstBrawlers, bestMaps, worstMaps }) => {
+        this.worstBrawlers = worstBrawlers;
+        this.bestMaps = bestMaps;
+        this.worstMaps = worstMaps;
         this.isLoading = false;
         this.cdr.detectChanges();
-        console.log('🔄 Change detection triggered');
       },
       error: (err) => {
-        console.error('❌ Ошибка загрузки худших бойцов:', err);
+        console.error('❌ Ошибка загрузки данных:', err);
         this.error = 'Не удалось загрузить данные';
-        this.worstBrawlers = [];
         this.isLoading = false;
+        this.cdr.detectChanges();
       }
     });
   }
 
+  /**
+   * Загрузка графика «Последние матчи» из GET /analytics/{playerId}/winrate-history?days=30
+   */
+  private loadRecentMatchesChart(): void {
+    this.chartLoading = true;
+    this.analyticsService.getPlayerWinrateHistory(30).subscribe({
+      next: (resp) => {
+        this.chartLoading = false;
+        const history = resp?.history ?? [];
+        this.recentMatchesData = this.normalizeWinrate(history);
+        this.cdr.detectChanges();
+      },
+      error: () => {
+        this.chartLoading = false;
+        this.recentMatchesData = [];
+        this.cdr.detectChanges();
+      }
+    });
+  }
+
+  /** win_rate может быть 0–1 или 0–100 */
+  private normalizeWinrate(history: WinrateHistoryPoint[]): WinrateHistoryPoint[] {
+    const max = Math.max(0, ...history.map(h => h.win_rate ?? 0));
+    const scale = max > 1 ? 1 / 100 : 1;
+    return history.map(h => ({ ...h, win_rate: (h.win_rate ?? 0) * scale }));
+  }
 
   /**
    * Синхронизация данных игрока

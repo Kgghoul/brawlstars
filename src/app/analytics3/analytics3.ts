@@ -41,12 +41,12 @@ export class Analytics3Component {
 
   // Лучшие бойцы на этой карте (реальные данные из API)
   bestBrawlers = [
-    { name: 'Pam', avatar: 'assets/brawlers/pam.png', winRate: 0, pickRate: 100 }
+    { name: 'Pam', avatar: 'assets/brawlers/pam_portrait.png', winRate: 0, pickRate: 100 }
   ];
 
   // Худшие бойцы на этой карте
   worstBrawlers = [
-    { name: 'Pam', avatar: 'assets/brawlers/pam.png', winRate: 0, pickRate: 100 }
+    { name: 'Pam', avatar: 'assets/brawlers/pam_portrait.png', winRate: 0, pickRate: 100 }
   ];
 
   setTab(tab: 'general' | 'detailed') {
